@@ -39,8 +39,8 @@ SNMP Version 3 specific
 
 Zabbix item configuration
 
-    --check-delay=SECONDS       check interval in seconds (default: 60)
-    --disc-delay=SECONDS        discovery interval in seconds (default: 3600)
+    --check-delay=TIME          check interval in Zabbix time units (default: 1m)
+    --disc-delay=TIME           discovery interval in Zabbix time units (default: 1h)
     --history=DAYS              history retention in days (default: 7)
     --trends=DAYS               trends retention in days (default: 365)
 
@@ -174,8 +174,8 @@ my $snmpv3_sec_protocol_map = {
 
 # Default command line options
 my $opts =  {
-    delay               => 60,              # 1 minute check interval
-    disc_delay          => 3600,            # Hourly discovery
+    delay               => '1m',                # 1 minute check interval
+    disc_delay          => '1h',            # Hourly discovery
     enableitems         => 0,               # Disable items
     group               => 'Templates',
     history             => 7,
@@ -223,8 +223,8 @@ GetOptions(
     'x|privacy=s'           => \$opts->{ v3sec_protocol },  # SNMPv3 Privacy protocol
     'X|privpass=s'          => \$opts->{ v2sec_pass},       # SNMPv3 Privacy passphrase
 
-    'check-delay=i'         => \$opts->{ delay },           # Update interval in seconds
-    'disc-delay=i'          => \$opts->{ disc_delay },      # Update interval in seconds
+    'check-delay=s'         => \$opts->{ delay },           # Update interval in seconds
+    'disc-delay=s'          => \$opts->{ disc_delay },      # Update interval in seconds
     'history=i'             => \$opts->{ history },         # History retention in days
     'trends=i'              => \$opts->{ trends },          # Trends retention in days
 
